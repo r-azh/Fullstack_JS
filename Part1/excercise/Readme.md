@@ -1,4 +1,4 @@
-# Excercise https://fullstackopen.com/en/part1/introduction_to_react#exercises-1-1-1-2
+# [Part1-1 Excercises](https://fullstackopen.com/en/part1/introduction_to_react#exercises-1-1-1-2)
 
 ## 1.1 : Course Information, step 1
 
@@ -100,3 +100,77 @@ const Content = ... {
 }
 ```
 
+
+# [Part 1-2 Excercises](https://fullstackopen.com/en/part1/java_script#exercises-1-3-1-5)
+
+## 1.3: Course Information step 3
+Modify the variable definitions of the App component as follows and also refactor the application so that it still works:
+```js
+const App = () => {
+  const course = 'Half Stack application development'
+  const part1 = {
+    name: 'Fundamentals of React',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Using props to pass data',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'State of a component',
+    exercises: 14
+  }
+
+  return (
+    <div>
+      ...
+    </div>
+  )
+}
+```
+
+## 1.4: Course Information step 4
+Place the objects into an array. Modify the variable definitions of App into the following form and modify the other parts of the application accordingly:
+```js
+const App = () => {
+  const course = 'Half Stack application development'
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
+
+  return (
+    <div>
+      ...
+    </div>
+  )
+}
+```
+No need to iterate for now however, do not pass different objects as separate props from the App component to the components Content and Total. Instead, pass them directly as an array:
+```js
+const App = () => {
+  // const definitions
+
+  return (
+    <div>
+      <Header course={course} />
+      <Content parts={parts} />
+      <Total parts={parts} />
+    </div>
+  )
+}
+```
+
+## 1.5: Course Information step 5
+
+Let's take the changes one step further. Change the course and its parts into a single JavaScript object. Fix everything that breaks.
