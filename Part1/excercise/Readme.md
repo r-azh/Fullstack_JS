@@ -211,3 +211,9 @@ The application must display the total number of collected feedback for each cat
 ```shell
 npm create vite@latest unicaf -- --template react
 ```
+
+# 1.7: unicafe step 2
+
+Expand your application so that it shows more statistics about the gathered feedback: the total number of collected feedback, the average score (the feedback values are: good 1, neutral 0, bad -1) and the percentage of positive feedback.
+
+
