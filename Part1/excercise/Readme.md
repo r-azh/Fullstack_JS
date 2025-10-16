@@ -246,3 +246,10 @@ Then perform the necessary actions to make the warning disappear. Try pasting th
 Remember to keep your console open at all times. If you see this warning in your console:
 
 Typical source of an error Unchecked runtime.lastError: Could not establish connection. Receiving end does not exist. is from a Chrome extension. Try going to chrome://extensions/ and try disabling them one by one and refreshing React app page; the error should eventually disappear.
+
+
+1.12*: anecdotes step 1
+
+The world of software engineering is filled with anecdotes that distill timeless truths from our field into short one-liners.
+
+Expand the following application by adding a button that can be clicked to display a random anecdote from the field of software engineering
