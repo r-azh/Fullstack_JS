@@ -216,4 +216,8 @@ npm create vite@latest unicaf -- --template react
 
 Expand your application so that it shows more statistics about the gathered feedback: the total number of collected feedback, the average score (the feedback values are: good 1, neutral 0, bad -1) and the percentage of positive feedback.
 
+# 1.8: unicafe step 3
 
+Refactor your application so that displaying the statistics is extracted into its own Statistics component. The state of the application should remain in the App root component.
+
+Remember that components should not be defined inside other components:
