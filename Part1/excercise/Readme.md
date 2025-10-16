@@ -253,3 +253,27 @@ Typical source of an error Unchecked runtime.lastError: Could not establish conn
 The world of software engineering is filled with anecdotes that distill timeless truths from our field into short one-liners.
 
 Expand the following application by adding a button that can be clicked to display a random anecdote from the field of software engineering
+
+## 1.13*: anecdotes step 2
+
+Expand your application so that you can vote for the displayed anecdote.
+anecdote app with votes button added
+
+NB store the votes of each anecdote into an array or object in the component's state. Remember that the correct way of updating state stored in complex data structures like objects and arrays is to make a copy of the state.
+
+You can create a copy of an `object` like this:
+```js
+const votes = { 0: 1, 1: 3, 2: 4, 3: 2 }
+
+const copy = { ...votes }
+// increment the property 2 value by one
+copy[2] += 1     
+```
+OR a copy of an `array` like this:
+```js
+const votes = [1, 4, 6, 3]
+
+const copy = [...votes]
+// increment the value in position 2 by one
+copy[2] += 1 
+```    
