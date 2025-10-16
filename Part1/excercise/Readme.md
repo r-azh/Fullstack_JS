@@ -225,3 +225,14 @@ Remember that components should not be defined inside other components:
 1.9: unicafe step 4
 
 Change your application to display statistics only once feedback has been gathered.
+
+1.10: unicafe step 5
+
+Let's continue refactoring the application. Extract the following two components:
+
+    Button handles the functionality of each feedback submission button.
+    StatisticLine for displaying a single statistic, e.g. the average score.
+
+To be clear: the StatisticLine component always displays a single statistic, meaning that the application uses multiple components for rendering all of the statistics:
+
+The application's state should still be kept in the root App component.
