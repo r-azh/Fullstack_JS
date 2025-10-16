@@ -13,13 +13,19 @@ function App() {
   ]
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
+  const [maxVote, setMaxVote] = useState(0)
+  const [maxVotedAnecdote, setMaxVotedAnecdote] = useState(0)
 
-  
   const handleVote = ({selected}) => {
     const votesCopy = [...votes]
     votesCopy[selected] += 1
     setVotes(votesCopy)
+    if (votesCopy[selected] > maxVote) {
+      setMaxVote(votesCopy[selected])
+      setMaxVotedAnecdote(selected)
+    }
   }
+
 
   return (
     <div>
@@ -28,6 +34,9 @@ function App() {
       <p>has {votes[selected]} votes</p>
       <button onClick={() => handleVote({selected})}>Vote</button>
       <button onClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))}>Next Anecdote</button>
+      <h1>Anecdote with the most votes</h1>
+      <p>{anecdotes[maxVotedAnecdote]}</p>
+      <p>has {maxVote} votes</p>
     </div>
   )
 }

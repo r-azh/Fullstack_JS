@@ -276,4 +276,9 @@ const votes = [1, 4, 6, 3]
 const copy = [...votes]
 // increment the value in position 2 by one
 copy[2] += 1 
-```    
+```
+
+## 1.14*: anecdotes step 3
+Now implement the final version of the application that displays the anecdote with the largest number of votes:
+
+If multiple anecdotes are tied for first place it is sufficient to just show one of them.
