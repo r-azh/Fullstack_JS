@@ -84,4 +84,12 @@ Using template strings is the more idiomatic option and the sign of a true JavaS
 
 Expand your application by allowing users to add phone numbers to the phone book. You will need to add a second input element to the form (along with its own event handler)
 
+## 2.9*: The Phonebook Step 4
+Implement a search field that can be used to filter the list of people by name
+
+You can implement the search field as an input element that is placed outside the HTML form. The filtering logic shown in the image is case insensitive, meaning that the search term arto also returns results that contain Arto with an uppercase A.
+
+NB: When you are working on new functionality, it's often useful to "hardcode" some dummy data into your application, e.g.
+This saves you from having to manually input data into your application for testing out your new functionality.
+
 
