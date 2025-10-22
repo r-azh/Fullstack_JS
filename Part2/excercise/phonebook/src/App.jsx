@@ -11,6 +11,15 @@ function App() {
 
   const addPerson = (event) => {
     event.preventDefault()
+    // prevent empty entries  
+    if (newName === '') return
+
+    console.log(persons)
+    // check if the name already exists
+    if (persons.some(person => person.name === newName)) {
+      alert(`${newName} is already added to the phonebook`)
+      return
+    }
     const personObject = {
       name: newName
     }
