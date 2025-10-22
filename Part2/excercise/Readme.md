@@ -85,6 +85,7 @@ Using template strings is the more idiomatic option and the sign of a true JavaS
 Expand your application by allowing users to add phone numbers to the phone book. You will need to add a second input element to the form (along with its own event handler)
 
 ## 2.9*: The Phonebook Step 4
+
 Implement a search field that can be used to filter the list of people by name
 
 You can implement the search field as an input element that is placed outside the HTML form. The filtering logic shown in the image is case insensitive, meaning that the search term arto also returns results that contain Arto with an uppercase A.
@@ -92,4 +93,12 @@ You can implement the search field as an input element that is placed outside th
 NB: When you are working on new functionality, it's often useful to "hardcode" some dummy data into your application, e.g.
 This saves you from having to manually input data into your application for testing out your new functionality.
 
+## 2.10: The Phonebook Step 5
 
+If you have implemented your application in a single component, refactor it by extracting suitable parts into new components. Maintain the application's state and all event handlers in the App root component.
+
+It is sufficient to extract three components from the application. Good candidates for separate components are, for example, the search filter, the form for adding new people to the phonebook, a component that renders all people from the phonebook, and a component that renders a single person's details.
+
+The application's root component could look similar to this after the refactoring. The refactored root component below only renders titles and lets the extracted components take care of the rest.
+
+NB: You might run into problems in this exercise if you define your components "in the wrong place". Now would be a good time to rehearse the chapter do not define a component in another component from the last part.
