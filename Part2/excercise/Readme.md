@@ -44,3 +44,23 @@ Let's extend our application to allow for an arbitrary number of courses
 
 ## 2.5: Separate module step 10
 Declare the Course component as a separate module, which is imported by the App component. You can include all subcomponents of the course in the same module.
+
+
+# [Exercises 2.6.-2.10](https://fullstackopen.com/en/part2/forms#exercises-2-6-2-10)
+
+## 2.6: The Phonebook Step 1
+
+Let's create a simple phonebook. In this part, we will only be adding names to the phonebook.
+
+Let us start by implementing the addition of a person to the phonebook.
+
+Sometimes it can be useful to render state and other variables as text for debugging purposes. You can temporarily add the following element to the rendered component:
+```js
+<div>debug: {newName}</div> 
+```
+NB:
+
+    you can use the person's name as a value of the key property
+    remember to prevent the default action of submitting HTML forms!
+
+
