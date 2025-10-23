@@ -1,18 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { PersonForm, Persons } from './components/Persons.jsx'
 import Filter from './components/Filter.jsx'
+import axios from 'axios'
+
 
 function App() {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchName, setSearchName] = useState('')
-  const [personsToShow, setPersonsToShow] = useState(persons)
+  const [personsToShow, setPersonsToShow] = useState([])
+
+  const getPersonsHook = () => {
+    console.log('effect hook to fetch persons from the server')
+    axios
+    .get('http://localhost:3001/persons')
+    .then(response => {
+      console.log('axios get promise fulfilled')
+      setPersons(response.data)
+      setPersonsToShow(response.data)
+    })
+  }
+  useEffect(getPersonsHook, [])
 
   const handleNameChange = (event) => {
     console.log('newName ->', event.target.value)

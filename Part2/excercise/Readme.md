@@ -102,3 +102,44 @@ It is sufficient to extract three components from the application. Good candidat
 The application's root component could look similar to this after the refactoring. The refactored root component below only renders titles and lets the extracted components take care of the rest.
 
 NB: You might run into problems in this exercise if you define your components "in the wrong place". Now would be a good time to rehearse the chapter do not define a component in another component from the last part.
+
+
+# [Excercise 2.11] (https://fullstackopen.com/en/part2/getting_data_from_server#exercise-2-11)
+
+## 2.11: The Phonebook Step 6
+
+We continue with developing the phonebook. Store the initial state of the application in the file db.json, which should be placed in the root of the project.
+
+Start json-server on port 3001 and make sure that the server returns the list of people by going to the address http://localhost:3001/persons in the browser.
+
+Modify the application such that the initial state of the data is fetched from the server using the axios-library. Complete the fetching with an Effect hook.
+
+```shell
+npm install json-server --save-dev
+npm install axios
+```
+
+add this to package.json
+```json
+{
+  // ... 
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "server": "json-server -p 3001 db.json"  },
+}
+```
+
+run frontend with
+```shell
+npm run dev
+```
+
+run backend with
+```shell
+npm run server
+```
+
+
