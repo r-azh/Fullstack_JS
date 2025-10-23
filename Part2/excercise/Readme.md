@@ -142,4 +142,10 @@ run backend with
 npm run server
 ```
 
+# [Exercises 2.12.-2.15](https://fullstackopen.com/en/part2/altering_data_in_server#exercises-2-12-2-15)
+
+## 2.12: The Phonebook step 7
+
+Currently, the numbers that are added to the phonebook are not saved to a backend server. Fix this situation.
+
 
