@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Note from './components/Note'
 import axios from 'axios'
+import notesService from './services/notes'
 
 function App() {
   const [notes, setNotes] = useState([])
@@ -8,32 +9,20 @@ function App() {
     'a new note...'
   ) 
   const [showAll, setShowAll] = useState(true)
-  const notesToShow = showAll ? notes: notes.filter(
-    note => note.important // === true is optional, because boolean values are truthy or falsy
-  )
+  // const notesToShow = showAll ? notes: notes.filter(
+  //   note => note.important // === true is optional, because boolean values are truthy or falsy
+  // )
 
   //Effect hook to fetch the notes from the server
-  // useEffect(() => {
-  //   console.log('effect')
-  //   axios.get('http://localhost:3002/notes')
-  //   .then(response => {
-  //     console.log('promise fulfilled')
-  //     setNotes(response.data)
-  //   })
-  // }, [])
-
-  // or 
-
-  const hook = () => {
+  useEffect(() => {
     console.log('effect')
-    axios
-    .get('http://localhost:3002/notes')
-    .then(response => {
+    notesService
+    .getAll()
+    .then(initialNotes => {
       console.log('promise fulfilled')
-      setNotes(response.data)
+      setNotes(initialNotes)
     })
-  }
-  useEffect(hook, [])
+  }, [])
 
   console.log('render ', notes.length, ' notes')
 
@@ -53,28 +42,37 @@ function App() {
       // id: String(notes.length + 1),
     }
 
-    axios
-    .post('http://localhost:3002/notes', noteObject)
-    .then(response => {
+    notesService
+    .create(noteObject)
+    .then(createdNote => {
       console.log('note created in server')
-      console.log(response)
+      console.log(createdNote)
       //creates a new copy of the array with the new item added to the end
-      setNotes(notes.concat(response.data))
+      setNotes(notes.concat(createdNote))
       setNewNote('')
     })
   }
+
   const toggleImportanceOf = (id) => {
     console.log('importance of ' + id + ' needs to be toggled')
-
-    const url = `http://localhost:3002/notes/${id}`
     const note = notes.find(n => n.id === id)
     //create a new object that is an exact copy of the old note, apart from the important property that has the value flipped
     const changedNote = { ...note, important: !note.important }
 
-    axios.put(url, changedNote).then(response => {
-      setNotes(notes.map(note => note.id === id ? response.data : note))
+    notesService
+    .update(id, changedNote)
+    .then(returnedNote => {
+      setNotes(notes.map(note => note.id === id ? returnedNote : note))
+    })
+    .catch(error => {
+      alert(
+        `the note '${note.content}' was already deleted from server`
+      )
+      setNotes(notes.filter(n => n.id !== id))
     })
   }
+  const notesToShow = showAll ? notes : notes.filter((note) => note.important)
+  console.log('notesToShow', notesToShow)
   
   return (
     <div>
@@ -85,13 +83,13 @@ function App() {
         </button>
       </div>
       <ul>
-        {notesToShow.map(note => 
+        {notesToShow.map((note) => (
           <Note
-           key={note.id}
-           note={note} 
-           toggleImportance={() => toggleImportanceOf(note.id)}
+            key={note.id}
+            note={note}
+            toggleImportance={() => toggleImportanceOf(note.id)}
           />
-        )}
+        ))}
       </ul>
       <form onSubmit={addNote}>
         <input 
