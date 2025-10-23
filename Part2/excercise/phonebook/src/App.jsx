@@ -61,11 +61,27 @@ function App() {
     .then(createdPerson => {
       console.log(createdPerson)
       setPersons(persons.concat(createdPerson))
+      setPersonsToShow(personsToShow.concat(createdPerson))
       setNewName('')
+      setNewNumber('')
     })
     .catch(error => {
       console.log(error)
     })
+  }
+
+  const removePerson = (id) => {
+    if (window.confirm(
+      `Delete ${persons.find(person => person.id === id).name}?`
+    )) {
+      console.log('removing person with id', id)
+      personsService.remove(id)
+      .then(response => {
+        console.log('remove response', response)
+        setPersons(persons.filter(person => person.id !== id))
+        setPersonsToShow(personsToShow.filter(person => person.id !== id))
+      })
+    } 
   }
 
   return (
@@ -83,7 +99,7 @@ function App() {
         />
 
       <h3>Numbers</h3>
-      <Persons persons={personsToShow} />
+      <Persons persons={personsToShow} removePerson={removePerson} />
     </div>
   )
 }

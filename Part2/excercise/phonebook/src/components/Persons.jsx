@@ -23,18 +23,19 @@ const PersonForm = ({nameValue, numberValue, nameOnChange, numberOnChange, submi
   )
 }
 
-const Person = ({person}) => {
+const Person = ({person, removePerson}) => {
   return (
     <li>
       {person.name} {person.number}
+      <button onClick={() => removePerson(person.id)}>delete</button>
     </li>
   )
 }
 
-const Persons = ({persons}) => {
+const Persons = ({persons, removePerson}) => {
   return (
     <div>
-        {persons.map(person => <Person key={person.name} person={person} />)}
+        {persons.map(person => <Person key={person.name} person={person} removePerson={removePerson} />)}
     </div>
   )
 }
