@@ -1,0 +1,11 @@
+{
+  "name": "promises",
+  "version": "1.0.0",
+  "description": "To run js files in an empty folder",
+  "main": "test_promis.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
