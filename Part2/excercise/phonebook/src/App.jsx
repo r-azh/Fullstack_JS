@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { PersonForm, Persons } from './components/Persons.jsx'
 import Filter from './components/Filter.jsx'
 import axios from 'axios'
+import personsService from './services/persons.js'
 
 
 function App() {
@@ -13,12 +14,11 @@ function App() {
 
   const getPersonsHook = () => {
     console.log('effect hook to fetch persons from the server')
-    axios
-    .get('http://localhost:3001/persons')
-    .then(response => {
+    personsService.getAll()
+    .then(initialPersons => {
       console.log('axios get promise fulfilled')
-      setPersons(response.data)
-      setPersonsToShow(response.data)
+      setPersons(initialPersons)
+      setPersonsToShow(initialPersons)
     })
   }
   useEffect(getPersonsHook, [])
@@ -57,10 +57,10 @@ function App() {
       name: newName,
       number: newNumber
     }
-    axios.post('http://localhost:3001/persons', personObject)
-    .then(response => {
-      console.log(response.data)
-      setPersons(persons.concat(personObject))
+    personsService.create(personObject)
+    .then(createdPerson => {
+      console.log(createdPerson)
+      setPersons(persons.concat(createdPerson))
       setNewName('')
     })
     .catch(error => {
