@@ -49,9 +49,16 @@ function App() {
 
     console.log(persons)
     // check if the name already exists
-    if (persons.some(person => person.name === newName)) {
-      alert(`${newName} is already added to the phonebook`)
-      return
+    const existingPerson = persons.find(person => person.name === newName)
+    // if (persons.some(person => person.name === newName)) {
+    if (existingPerson) {
+      if (existingPerson.number === newNumber) {
+        alert(`${newName} is already added to the phonebook`)
+        return
+      } else {
+        updatePerson(existingPerson.id, { ...existingPerson, number: newNumber })
+        return
+      }
     }
     const personObject = {
       name: newName,
@@ -64,9 +71,6 @@ function App() {
       setPersonsToShow(personsToShow.concat(createdPerson))
       setNewName('')
       setNewNumber('')
-    })
-    .catch(error => {
-      console.log(error)
     })
   }
 
@@ -82,6 +86,19 @@ function App() {
         setPersonsToShow(personsToShow.filter(person => person.id !== id))
       })
     } 
+  }
+
+  const updatePerson = (id, newObject) => {
+    if (window.confirm(
+      `${newObject.name} is already added to the phonebook, replace the old number with the new one?`
+    )) {
+      personsService.update(id, newObject)
+      .then(updatePerson => {
+        console.log('update response', updatePerson)
+        setPersons(persons.map(person => person.id === id ? updatePerson : person))
+        setPersonsToShow(personsToShow.map(person => person.id === id ? updatePerson : person))
+      })
+    }
   }
 
   return (

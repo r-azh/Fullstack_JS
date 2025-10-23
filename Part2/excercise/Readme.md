@@ -161,3 +161,8 @@ The associated resource for a person in the backend can be deleted by making an 
 You can make an HTTP DELETE request with the axios library in the same way that we make all of the other requests.
 
 NB: You can't use the name delete for a variable because it's a reserved word in JavaScript.
+
+## 2.15*: The Phonebook step 10
+Change the functionality so that if a number is added to an already existing user, the new number will replace the old number. It's recommended to use the HTTP PUT method for updating the phone number.
+
+If the person's information is already in the phonebook, the application can ask the user to confirm the action
