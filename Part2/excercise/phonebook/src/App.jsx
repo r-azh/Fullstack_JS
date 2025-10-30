@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { PersonForm, Persons } from './components/Persons.jsx'
 import Filter from './components/Filter.jsx'
+import Notification from './components/Notification.jsx'
 import axios from 'axios'
 import personsService from './services/persons.js'
-
+import './index.css'
 
 function App() {
   const [persons, setPersons] = useState([])
@@ -11,6 +12,7 @@ function App() {
   const [newNumber, setNewNumber] = useState('')
   const [searchName, setSearchName] = useState('')
   const [personsToShow, setPersonsToShow] = useState([])
+  const [successMessage, setSuccessMessage] = useState(null)
 
   const getPersonsHook = () => {
     console.log('effect hook to fetch persons from the server')
@@ -71,12 +73,17 @@ function App() {
       setPersonsToShow(personsToShow.concat(createdPerson))
       setNewName('')
       setNewNumber('')
+      setSuccessMessage(`Added ${newName}`)
+      setTimeout(() => {
+        setSuccessMessage(null)
+      }, 5000)
     })
   }
 
   const removePerson = (id) => {
+    const name = persons.find(person => person.id === id).name
     if (window.confirm(
-      `Delete ${persons.find(person => person.id === id).name}?`
+      `Delete ${name}?`
     )) {
       console.log('removing person with id', id)
       personsService.remove(id)
@@ -84,6 +91,10 @@ function App() {
         console.log('remove response', response)
         setPersons(persons.filter(person => person.id !== id))
         setPersonsToShow(personsToShow.filter(person => person.id !== id))
+        setSuccessMessage(`Removed ${name}`)
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 5000)
       })
     } 
   }
@@ -97,6 +108,10 @@ function App() {
         console.log('update response', updatePerson)
         setPersons(persons.map(person => person.id === id ? updatePerson : person))
         setPersonsToShow(personsToShow.map(person => person.id === id ? updatePerson : person))
+        setSuccessMessage(`Updated ${newObject.name}`)
+        setTimeout(() => {
+          setSuccessMessage(null)
+        }, 5000)
       })
     }
   }
@@ -104,6 +119,7 @@ function App() {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={successMessage} />
       <Filter value={searchName} onChange={handleSearchNameChange} />
       
       <h3>add a new</h3>

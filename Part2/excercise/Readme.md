@@ -166,3 +166,9 @@ NB: You can't use the name delete for a variable because it's a reserved word in
 Change the functionality so that if a number is added to an already existing user, the new number will replace the old number. It's recommended to use the HTTP PUT method for updating the phone number.
 
 If the person's information is already in the phonebook, the application can ask the user to confirm the action
+
+
+# [Exercises 2.16.-2.17](https://fullstackopen.com/en/part2/adding_styles_to_react_app#exercises-2-16-2-17)
+
+## 2.16: Phonebook step 11
+Use the [improved error message](https://fullstackopen.com/en/part2/adding_styles_to_react_app#improved-error-message) example from part 2 as a guide to show a notification that lasts for a few seconds after a successful operation is executed (a person is added or a number is changed)
