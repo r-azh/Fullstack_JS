@@ -13,6 +13,7 @@ function App() {
   const [searchName, setSearchName] = useState('')
   const [personsToShow, setPersonsToShow] = useState([])
   const [successMessage, setSuccessMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const getPersonsHook = () => {
     console.log('effect hook to fetch persons from the server')
@@ -96,6 +97,12 @@ function App() {
           setSuccessMessage(null)
         }, 5000)
       })
+      .catch(error => {
+        setErrorMessage(`${name} is already removed from the phonebook`)
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+      })
     } 
   }
 
@@ -120,6 +127,7 @@ function App() {
     <div>
       <h2>Phonebook</h2>
       <Notification message={successMessage} />
+      <Notification message={errorMessage} />
       <Filter value={searchName} onChange={handleSearchNameChange} />
       
       <h3>add a new</h3>
