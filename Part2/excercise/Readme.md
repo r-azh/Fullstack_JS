@@ -213,3 +213,30 @@ There is still a lot to do in this part, so don't get stuck on this exercise!
 Improve on the application in the previous exercise, such that when the names of multiple countries are shown on the page there is a button next to the name of the country, which when pressed shows the view for that country
 In this exercise, it is also enough that your application works for most countries. Countries whose name appears in the name of another country, like Sudan, can be ignored.
 
+## 2.20*: Data for countries, step 3
+
+Add to the view showing the data of a single country, the weather report for the capital of that country. There are dozens of providers for weather data. One suggested API is [https://openweathermap.org](https://openweathermap.org/). Note that it might take some minutes until a generated API key is valid.
+
+If you use Open weather map, [here](https://openweathermap.org/weather-conditions#Icon-list) is the description for how to get weather icons.
+
+NB: In some browsers (such as Firefox) the chosen API might send an error response, which indicates that HTTPS encryption is not supported, although the request URL starts with http://. This issue can be fixed by completing the exercise using Chrome.
+
+NB: You need an api-key to use almost every weather service. Do not save the api-key to source control! Nor hardcode the api-key to your source code. Instead use an [environment variable](https://vitejs.dev/guide/env-and-mode.html) to save the key in this exercise. In real-life applications, it's considered insecure sending these keys directly from the browser, as anyone who can open the dev console would be able to intercept your keys! We will focus on implementing a separate backend in the next part of the course.
+
+Assuming the api-key is 54l41n3n4v41m34rv0, when the application is started like so:
+```shell
+export VITE_SOME_KEY=54l41n3n4v41m34rv0 && npm run dev
+ // For Linux/macOS Bash
+($env:VITE_SOME_KEY="54l41n3n4v41m34rv0") -and (npm run dev)
+ // For Windows PowerShell
+set "VITE_SOME_KEY=54l41n3n4v41m34rv0" && npm run dev
+ // For Windows cmd.exe
+```
+you can access the value of the key from the import.meta.env object:
+```shell
+const api_key = import.meta.env.VITE_SOME_KEY
+// variable api_key now has the value set in startup
+```
+NB: To prevent accidentally leaking environment variables to the client, only variables prefixed with VITE_ are exposed to Vite.
+
+Also remember that if you make changes to environment variables, you need to restart the development server for the changes to take effect.

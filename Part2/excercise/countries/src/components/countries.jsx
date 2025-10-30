@@ -1,4 +1,7 @@
-const Country = ({ country }) => {
+import Weather from './weather'
+import getWeather from '../services/weather'
+
+const Country = ({ country , weather }) => {
     console.log(country)
   return (
     <div>
@@ -12,6 +15,7 @@ const Country = ({ country }) => {
         ))}
       </ul>
       <img src={country.flags.png} alt={country.name.common} />
+      <Weather weather={weather} />
     </div>
   )
 }
@@ -31,7 +35,9 @@ const Countries = ({ countries, showCountryHandler }) => {
     return <div>Too many countries, specify another filter</div>
   }
   if (countries.length === 1) {
-    return <Country country={countries[0]} />
+    console.log('countries[0].capital ->', countries[0].capital)
+    const weather = getWeather({city: countries[0].capital[0]})
+    return <Country country={countries[0]} weather={weather} />
   }
   return (
     <div>
