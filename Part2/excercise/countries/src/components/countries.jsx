@@ -1,4 +1,5 @@
 const Country = ({ country }) => {
+    console.log(country)
   return (
     <div>
       <h1>{country.name.common}</h1>
@@ -15,7 +16,16 @@ const Country = ({ country }) => {
   )
 }
 
-const Countries = ({ countries }) => {
+const CountryShortView = ({ country, showCountryHandler }) => {
+  return (
+    <div>
+      {country.name.common + " "} 
+      <button onClick={() => showCountryHandler(country)}>Show</button>
+    </div>
+  )
+}
+
+const Countries = ({ countries, showCountryHandler }) => {
   console.log(countries.length + " countries received")
   if (countries.length > 10) {
     return <div>Too many countries, specify another filter</div>
@@ -26,10 +36,10 @@ const Countries = ({ countries }) => {
   return (
     <div>
       {countries.map(country => (
-        <div key={country.name.common}>{country.name.common}</div>
+        <CountryShortView key={country.name.common} country={country} showCountryHandler={showCountryHandler} />
       ))}
     </div>
   )
 }
 
-export default Countries
+export {Countries, Country}

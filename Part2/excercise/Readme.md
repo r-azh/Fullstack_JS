@@ -205,3 +205,11 @@ npm create vite@latest countries -- --template react
 cd countries
 npm install axios
 ```
+
+## 2.19*: Data for countries, step 2
+
+There is still a lot to do in this part, so don't get stuck on this exercise!
+
+Improve on the application in the previous exercise, such that when the names of multiple countries are shown on the page there is a button next to the name of the country, which when pressed shows the view for that country
+In this exercise, it is also enough that your application works for most countries. Countries whose name appears in the name of another country, like Sudan, can be ignored.
+

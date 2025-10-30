@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import countriesService from './services/countries.js'
-import Countries from './components/countries.jsx'
+import {Countries, Country} from './components/countries.jsx'
 
 function App() {
   const [searchCountry, setSearchCountry] = useState('')
@@ -26,6 +26,10 @@ function App() {
     )
   }
 
+  const showCountryHandler = (country) => {
+    console.log('showCountryHandler ->', country)
+    setCountriesToShow([country])
+  }
 
   return (
     <div>
@@ -36,7 +40,7 @@ function App() {
       onChange={handleSearchCountryChange}
       placeholder="countries"
       />
-      <Countries countries={countriesToShow} />
+      <Countries countries={countriesToShow} showCountryHandler={showCountryHandler} />
     </div>
   )
 }
