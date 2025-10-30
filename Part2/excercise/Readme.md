@@ -179,3 +179,29 @@ Open your application in two browsers. If you delete a person in browser 1 a sho
 Fix the issue according to the example shown in promise and errors in part 2. Modify the example so that the user is shown a message when the operation does not succeed. The messages shown for successful and unsuccessful events should look different
 
 Note that even if you handle the exception, the first "404" error message is still printed to the console. But you should not see "Uncaught (in promise) Error".
+
+
+# [Exercises 2.18.-2.20](https://fullstackopen.com/en/part2/adding_styles_to_react_app#exercises-2-18-2-20)
+
+## 2.18* Data for countries, step 1
+
+At https://studies.cs.helsinki.fi/restcountries/ you can find a service that offers a lot of information related to different countries in a so-called machine-readable format via the REST API. Make an application that allows you to view information from different countries.
+
+The user interface is very simple. The country to be shown is found by typing a search query into the search field.
+
+If there are too many (over 10) countries that match the query, then the user is prompted to make their query more specific:
+
+If there are ten or fewer countries, but more than one, then all countries matching the query are shown:
+matching countries in a list screenshot
+
+When there is only one country matching the query, then the basic data of the country (eg. capital and area), its flag and the languages spoken are shown:
+flag and additional attributes screenshot
+
+NB: It is enough that your application works for most countries. Some countries, like Sudan, can be hard to support since the name of the country is part of the name of another country, South Sudan. You don't need to worry about these edge cases.
+
+```shell
+npm create vite@latest countries -- --template react
+
+cd countries
+npm install axios
+```
