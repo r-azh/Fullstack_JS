@@ -218,3 +218,69 @@ If you clone the project, run the `npm install` command before starting the appl
 3.5: Phonebook backend step 5
 
 3.6: Phonebook backend step 6
+
+## About HTTP request types
+
+The HTTP standard talks about two properties related to request types, safety and idempotency.
+
+The HTTP GET request should be safe:
+
+    In particular, the convention has been established that the GET and HEAD methods SHOULD NOT have the significance of taking an action other than retrieval. These methods ought to be considered "safe".
+
+Safety means that the executing request must not cause any side effects on the server. By side effects, we mean that the state of the database must not change as a result of the request, and the response must only return data that already exists on the server.
+
+All HTTP requests except POST should be idempotent:
+
+    Methods can also have the property of "idempotence" in that (aside from error or expiration issues) the side-effects of N > 0 identical requests is the same as for a single request. The methods GET, HEAD, PUT and DELETE share this property
+
+POST is the only HTTP request type that is neither safe nor idempotent. If we send 5 different HTTP POST requests to /api/notes with a body of {content: "many same", important: true}, the resulting 5 notes on the server will all have the same content.
+
+## Middleware
+
+The Express json-parser used earlier is a middleware.
+
+Middleware are functions that can be used for handling request and response objects.
+
+The json-parser we used earlier takes the raw data from the requests that are stored in the request object, parses it into a JavaScript object and assigns it to the request object as a new property body.
+
+In practice, you can use several middlewares at the same time. When you have more than one, they're executed one by one in the order that they were listed in the application code.
+
+Middleware is a function that receives three parameters:
+```js
+const requestLogger = (request, response, next) => {
+  console.log('Method:', request.method)
+  console.log('Path:  ', request.path)
+  console.log('Body:  ', request.body)
+  console.log('---')
+  next()
+}
+```
+At the end of the function body, the next function that was passed as a parameter is called. The next function yields control to the next middleware.
+
+Middleware is used like this:
+
+```js
+app.use(requestLogger)
+```
+
+Remember, middleware functions are called in the order that they're encountered by the JavaScript engine. Notice that json-parser is listed before requestLogger , because otherwise request.body will not be initialized when the logger is executed!
+
+Middleware functions have to be used before routes when we want them to be executed by the route event handlers. Sometimes, we want to use middleware functions after routes. We do this when the middleware functions are only called if no route handler processes the HTTP request.
+
+Let's add the following middleware after our routes. This middleware will be used for catching requests made to non-existent routes. For these requests, the middleware will return an error message in the JSON format.
+
+```js
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: 'unknown endpoint' })
+}
+
+app.use(unknownEndpoint)
+```
+
+You can find the code for our current application in its entirety in the part3-2 branch of this [GitHub repository](https://github.com/fullstack-hy2020/part3-notes-backend/tree/part3-2).
+
+## [Exercises 3.7.-3.8 ](https://fullstackopen.com/en/part3/node_js_and_express#exercises-3-7-3-8)
+
+3.7: Phonebook backend step 7
+
+3.8*: Phonebook backend step 8

@@ -1,7 +1,11 @@
 const express = require('express')
+const { requestLogger, unknownEndpoint } = require('./middleware')
+
 const app = express()
 
 app.use(express.json())
+
+app.use(requestLogger)
 
 
 let notes = [
@@ -69,6 +73,10 @@ app.post('/api/notes', (request, response) => {
   notes = notes.concat(note)
   response.json(note)
 })  
+
+// This middleware will be used for catching requests made to non-existent routes. 
+app.use(unknownEndpoint)
+
 
 const PORT = 3001
 app.listen(PORT, () => {
