@@ -24,8 +24,8 @@ POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "number": "1234567890"
+  "name": "Liisa Marttinen",
+  "number": "040-243563"
 }
 
 ### Add a person with missing name

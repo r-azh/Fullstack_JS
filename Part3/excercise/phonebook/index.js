@@ -1,6 +1,16 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
+
 app.use(express.json())
+
+// Custom morgan token to include request body
+morgan.token('body', (request) => {
+    return JSON.stringify(request.body)
+})
+
+// Custom format based on 'dev' that includes request body
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 let persons = [
     { 
