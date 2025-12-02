@@ -11,3 +11,10 @@ GET http://localhost:3001/api/persons/1
 
 ### Get a person by id that does not exist
 GET http://localhost:3001/api/persons/5
+
+
+### Delete a person by id
+DELETE http://localhost:3001/api/persons/1
+
+### Delete a person by id that does not exist
+DELETE http://localhost:3001/api/persons/5
