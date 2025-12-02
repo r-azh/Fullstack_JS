@@ -22,7 +22,9 @@ npm install express
 
 ## 3.2: Phonebook backend step 2
 
+Implement a page at the address http://localhost:3001/info that looks roughly like the picture
 
+The page has to show the time that the request was received and how many entries are in the phonebook at the time of processing the request.
 
 
 ## 3.3: Phonebook backend step 3
