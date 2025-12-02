@@ -46,6 +46,12 @@ Expand the backend so that new phonebook entries can be added by making HTTP POS
 Generate a new id for the phonebook entry with the Math.random function. Use a big enough range for your random values so that the likelihood of creating duplicate ids is small.
 
 ## 3.6: Phonebook backend step 6
+Implement error handling for creating new entries. The request is not allowed to succeed, if:
+
+    The name or number is missing
+    The name already exists in the phonebook
+
+Respond to requests like these with the appropriate status code, and also send back information that explains the reason for the error, e.g.:
 
 # [Exercises 3.7.-3.8 ](https://fullstackopen.com/en/part3/node_js_and_express#exercises-3-7-3-8)
 

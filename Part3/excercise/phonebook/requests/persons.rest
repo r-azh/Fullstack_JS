@@ -27,3 +27,28 @@ Content-Type: application/json
   "name": "John Doe",
   "number": "1234567890"
 }
+
+### Add a person with missing name
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "number": "1234567890"
+}
+
+### Add a person with missing number
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "John Doe"
+}
+
+### Add a person with existing name
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Arto Hellas",
+  "number": "040-123456"
+}
