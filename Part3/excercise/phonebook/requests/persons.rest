@@ -18,3 +18,12 @@ DELETE http://localhost:3001/api/persons/1
 
 ### Delete a person by id that does not exist
 DELETE http://localhost:3001/api/persons/5
+
+### Add a person
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "number": "1234567890"
+}
