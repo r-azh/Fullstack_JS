@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Our goal is to implement a backend that will work with the notes application from part 2. However, let's start with the basics by implementing a classic \"hello world\" application.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch using_express/express_web_server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rezvan",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
