@@ -14,7 +14,7 @@ function App() {
     'a new note...'
   ) 
   const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('some error happened...')
+  const [errorMessage, setErrorMessage] = useState(null)
 
   //Effect hook to fetch the notes from the server
   useEffect(() => {
