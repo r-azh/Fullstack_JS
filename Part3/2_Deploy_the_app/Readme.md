@@ -97,3 +97,60 @@ Now we are using the port defined in the environment variable PORT or port 3001 
 
 ## [Using Render for hosting](https://fullstackopen.com/en/part3/deploying_app_to_internet#application-to-the-internet)
 
+
+
+## Frontend production build
+
+So far we have been running React code in development mode. In development mode the application is configured to give clear error messages, immediately render code changes to the browser, and so on.
+
+When the application is deployed, we must create a [production build](https://vite.dev/guide/build.html) or a version of the application that is optimized for production.
+
+A production build for applications created with Vite can be created with the [command](https://vite.dev/guide/build.html) 
+```sh
+npm run build.
+```
+
+Let's run this command from the root of the notes frontend project that we developed in Part 2.
+
+This creates a directory called dist which contains the only HTML file of our application (index.html) and the directory assets. Minified version of our application's JavaScript code will be generated in the dist directory. Even though the application code is in multiple files, all of the JavaScript will be minified into one file. All of the code from all of the application's dependencies will also be minified into this single file.
+
+The minified code is not very readable.
+
+
+## Serving static files from the backend
+
+
+
+One option for deploying the frontend is to copy the production build (the dist directory) to the root of the backend directory and configure the backend to show the frontend's main page (the file dist/index.html) as its main page.
+
+We begin by copying the production build of the frontend to the root of the backend. 
+```sh
+cp -r dist ../backend
+```
+
+To make Express show static content, the page index.html and the JavaScript, etc., it fetches, we need a built-in middleware from Express called [static](http://expressjs.com/en/starter/static-files.html).
+
+When we add the following amidst the declarations of middlewares
+```js
+app.use(express.static('dist'))
+```
+whenever Express gets an HTTP GET request it will first check if the dist directory contains a file corresponding to the request's address. If a correct file is found, Express will return it.
+
+Now HTTP GET requests to the address www.serversaddress.com/index.html or www.serversaddress.com will show the React frontend. GET requests to the address www.serversaddress.com/api/notes will be handled by the backend code.
+
+Because of our situation, both the frontend and the backend are at the same address, we can declare baseUrl as a relative URL. This means we can leave out the part declaring the server in frontend.
+
+```js
+import axios from 'axios'
+
+const baseUrl = '/api/notes'
+
+const getAll = () => {
+  const request = axios.get(baseUrl)
+  return request.then(response => response.data)
+}
+
+// ...
+```
+
+After the change, we have to create a new production build of the frontend and copy it to the root of the backend directory.
