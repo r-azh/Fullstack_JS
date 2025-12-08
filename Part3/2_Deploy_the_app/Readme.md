@@ -154,3 +154,69 @@ const getAll = () => {
 ```
 
 After the change, we have to create a new production build of the frontend and copy it to the root of the backend directory.
+
+
+## Streamlining deploying of the frontend
+
+To create a new production build of the frontend without extra manual work, let's add some npm-scripts to the package.json of the backend repository.
+
+Render
+
+Note: When you attempt to deploy your backend to Render, make sure you have a separate repository for the backend and deploy that github repo through Render, attempting to deploy through your Fullstackopen repository will often throw "ERR path ....package.json".
+
+In case of Render, the scripts look like the following
+```json
+{
+  "scripts": {
+    //...
+    "build:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
+  }
+}
+```
+test with
+```sh
+npm run build:ui
+```
+
+The script npm run build:ui builds the frontend and copies the production version under the backend repository. npm run deploy:full contains also the necessary git commands to update the backend repository.
+
+Note that the directory paths in the script build:ui depend on the location of the frontend and backend directories in the file system.
+
+    NB On Windows, npm scripts are executed in cmd.exe as the default shell which does not support bash commands. For the above bash commands to work, you can change the default shell to Bash (in the default Git for Windows installation) as follows:
+
+```sh
+npm config set script-shell "C:\\Program Files\\git\\bin\\bash.exe"
+```
+Another option is the use of shx.
+
+
+## Proxy
+
+Changes on the frontend have caused it to no longer work in development mode (when started with command npm run dev), as the connection to the backend does not work.
+
+This is due to changing the backend address to a relative URL:
+```js
+const baseUrl = '/api/notes'
+```
+Because in development mode the frontend is at the address localhost:5173, the requests to the backend go to the wrong address localhost:5173/api/notes. The backend is at localhost:3001.
+
+If the project was created with Vite, this problem is easy to solve. It is enough to add the following declaration to the vite.config.js file of the frontend directory.
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {    proxy: {      '/api': {        target: 'http://localhost:3001',        changeOrigin: true,      },    }  },})
+```
+After restarting, the React development environment will act as proxy. If the React code makes an HTTP request to a path starting with http://localhost:5173/api, the request will be forwarded to the server at http://localhost:3001. Requests to other paths will be handled normally by the development server.
+
+Now the frontend is also working correctly. It functions both in development mode and in production mode together with the server. Since from the frontend's perspective all requests are made to http://localhost:5173, which is the single origin, there is no longer a need for the backend's cors middleware. Therefore, we can remove references to the cors library from the backend's index.js file and remove cors from the project's dependencies:
+```js
+npm remove cors
+```
+We have now successfully deployed the entire application to the internet. There are many other ways to implement deployments. For example, deploying the frontend code as its own application may be sensible in some situations, as it can facilitate the implementation of an automated deployment pipeline. A deployment pipeline refers to an automated and controlled way to move code from the developer's machine through various tests and quality control stages to the production environment. This topic is covered in part 11 of the course.
+
+The current backend code can be found on Github, in the branch part3-3. The changes in frontend code are in part3-1 branch of the frontend repository.
