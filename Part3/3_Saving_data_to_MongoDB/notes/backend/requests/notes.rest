@@ -1,0 +1,26 @@
+### Get all notes
+GET http://localhost:3001/api/notes
+
+### Get a note by id
+GET http://localhost:3001/api/notes/1
+
+### Delete a note by id
+DELETE http://localhost:3001/api/notes/693ede78a1eaf4b46f02568d
+
+### Create a note
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+  "content": "This is a new note",
+  "important": true
+}       
+
+### Test a non-existent route
+GET http://localhost:3001/api/note
+
+### Test a non-existent note by id
+GET http://localhost:3001/api/notes/5c41c90e84d891c15dfa3431
+
+### Test a wrong kind of id
+GET http://localhost:3001/api/notes/someInvalidFormatId
