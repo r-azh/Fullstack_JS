@@ -220,3 +220,9 @@ npm remove cors
 We have now successfully deployed the entire application to the internet. There are many other ways to implement deployments. For example, deploying the frontend code as its own application may be sensible in some situations, as it can facilitate the implementation of an automated deployment pipeline. A deployment pipeline refers to an automated and controlled way to move code from the developer's machine through various tests and quality control stages to the production environment. This topic is covered in part 11 of the course.
 
 The current backend code can be found on Github, in the branch part3-3. The changes in frontend code are in part3-1 branch of the frontend repository.
+
+## [Exercises 3.9.-3.11](https://fullstackopen.com/en/part3/deploying_app_to_internet#exercises-3-9-3-11)
+
+### 3.9 Phonebook backend step 9
+
+### 3.10 Phonebook backend step 10
