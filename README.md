@@ -45,3 +45,4 @@ Excercises To Do:
 - part4 4.1 to 4.23
 - part5 5.1 to 5.23
 - part6 6.1 to 6.24
+- part7 7.1 to 7.21
