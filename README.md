@@ -27,11 +27,19 @@ New approach to learning this:
 
 1- Ask cursor to summarise the chapter in `Readme_cursor.md`
 
-Can you summarize the steps in https://fullstackopen.com/en/part3/validation_and_es_lint  like the ones that I did for the previews parts in Readme.md files, into a new Readme_cursor.md. Add file names to all code blocks in Readme_cursor.md. If the folder/file structure doesn't exists add it. Add the related excercises to the Readme_cursor.md in excercise as well
-Can you copy excercises of this part to Partx/excercise/Readme.md as well as the format that already exists
+Can you summarize the steps in this link:
+  https://fullstackopen.com/en/part4/structure_of_backend_application_introduction_to_testing
+  inside the above pathc
+
+ like the ones that I did for the previews parts in Readme.md files, into a new Readme_cursor.md. Add file names to all code blocks in Readme_cursor.md. If the folder/file structure doesn't exists add it. Add the related excercises to the Readme_cursor.md in excercise as well.
+ Also, copy excercises of this part to /excercise/Readme.md same as the format that already exists in other parts
 
 2- Skim/Read through the part/chapter
 
 3- Run the excercises
 
 --------------
+
+Excercises To Do:
+- part3  3.9 to 3.22
+- part4 4.1 to 4.23
