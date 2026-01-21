@@ -43,3 +43,4 @@ Can you summarize the steps in this link:
 Excercises To Do:
 - part3  3.9 to 3.22
 - part4 4.1 to 4.23
+- part5 5.1 to 5.23
