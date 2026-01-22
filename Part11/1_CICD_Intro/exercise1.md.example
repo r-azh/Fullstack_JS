@@ -1,0 +1,56 @@
+# Exercise 11.1: Warming Up
+
+## Language Choice: Python
+
+For this hypothetical scenario with a team of 6 developers working on a Python application in active development, I'll analyze the CI/CD setup requirements.
+
+## CI Tools for Python
+
+**Linting:**
+- **pylint**: Comprehensive linting tool that checks code quality, style, and potential errors
+- **flake8**: Combines pycodestyle, pyflakes, and mccabe for style and error checking
+- **black**: Code formatter that enforces consistent code style automatically
+
+**Testing:**
+- **pytest**: Modern testing framework with powerful fixtures and plugins
+- **unittest**: Built-in testing framework (part of Python standard library)
+- **coverage.py**: Measures code coverage during testing
+
+**Building:**
+- **setuptools**: Standard tool for packaging Python projects
+- **poetry**: Modern dependency management and packaging tool
+- **pip**: Package installer (though not a build tool per se, essential for dependency management)
+
+## CI Platform Alternatives
+
+Beyond Jenkins and GitHub Actions, several alternatives exist:
+
+**Cloud-Based:**
+- **CircleCI**: Cloud-based CI/CD platform with excellent Docker support and parallelization
+- **GitLab CI**: Integrated CI/CD solution, can be self-hosted or cloud-based
+- **Travis CI**: Popular for open-source projects, cloud-based with good language support
+- **Azure DevOps**: Microsoft's comprehensive CI/CD platform with integrated project management
+
+**Self-Hosted:**
+- **GitLab Runner**: Self-hosted runner for GitLab CI
+- **TeamCity**: JetBrains' CI/CD server with powerful build configuration
+- **Bamboo**: Atlassian's CI/CD server integrated with Jira
+
+## Self-Hosted vs Cloud-Based Recommendation
+
+For a team of 6 developers with an application in active development, I would recommend a **cloud-based solution** initially, with the option to migrate to self-hosted later if needed.
+
+**Reasoning:**
+- **Quick Setup**: Cloud-based solutions can be operational within hours, allowing the team to focus on development
+- **No Maintenance Overhead**: The team doesn't need DevOps expertise to maintain infrastructure
+- **Cost-Effective**: For 6 developers, cloud-based billing by build time is likely cheaper than maintaining dedicated hardware
+- **Scalability**: Can handle varying build loads without hardware investment
+
+**Information Needed:**
+- Expected build frequency and duration
+- Budget constraints
+- Security and compliance requirements
+- Whether special hardware (e.g., GPU) is needed
+- Team's DevOps expertise and capacity for maintenance
+
+If the project grows significantly or has special requirements (e.g., need for GPU resources, strict data residency requirements), migrating to a self-hosted solution would become more attractive.
