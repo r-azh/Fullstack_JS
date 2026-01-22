@@ -1,0 +1,7 @@
+node_modules
+.env
+coverage
+.vscode
+.idea
+mongo_data
+redis_data
