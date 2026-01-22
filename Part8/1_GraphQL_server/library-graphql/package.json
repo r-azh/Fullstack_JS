@@ -1,0 +1,22 @@
+{
+  "name": "library-graphql",
+  "version": "1.0.0",
+  "description": "GraphQL server for library application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "graphql",
+    "apollo",
+    "library"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "graphql": "^16.8.1",
+    "uuid": "^9.0.1"
+  }
+}
