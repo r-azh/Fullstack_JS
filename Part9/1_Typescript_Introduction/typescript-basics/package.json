@@ -1,0 +1,21 @@
+{
+  "name": "typescript-basics",
+  "version": "1.0.0",
+  "description": "TypeScript basics examples",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/birthdayGreeter.js"
+  },
+  "keywords": [
+    "typescript",
+    "basics",
+    "examples"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
