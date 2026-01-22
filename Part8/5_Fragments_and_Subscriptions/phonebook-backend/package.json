@@ -1,0 +1,32 @@
+{
+  "name": "phonebook-backend",
+  "version": "1.0.0",
+  "description": "GraphQL backend with subscriptions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "keywords": [
+    "graphql",
+    "apollo",
+    "subscriptions",
+    "websocket"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "@as-integrations/express5": "^1.0.0",
+    "@graphql-tools/schema": "^10.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.14.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "ws": "^8.16.0"
+  }
+}
