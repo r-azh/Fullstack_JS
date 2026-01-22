@@ -56,3 +56,4 @@ Excercises To Do:
 - Part10 10.1 to 10.27
 - Part11 11.1 to 11.21
 - Part12 12.1 to 12.22
+- Part13 13.1 to 13.24
