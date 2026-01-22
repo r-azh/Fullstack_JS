@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Build script"
+
+# Add commands here
+npm install
+npm run build

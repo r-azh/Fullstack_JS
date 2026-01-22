@@ -1,0 +1,32 @@
+name: Health Check
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  # Allow manual trigger for testing
+  workflow_dispatch:
+  # Test with push trigger first
+  push:
+    branches:
+      - main
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Health check
+        uses: url-health-check@v1
+        with:
+          url: 'https://your-app.fly.dev/health'
+          max-attempts: 3
+          follow-redirect: true
+          timeout: 10000
+      - name: Notify on failure
+        if: failure()
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "⚠️ Health Check Failed"
+          description: "Application health check failed. Application may be down."
+          color: 0xff0000

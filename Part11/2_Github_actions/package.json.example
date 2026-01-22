@@ -1,0 +1,22 @@
+{
+  "name": "full-stack-open-pokedex",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
+    "server": "cd backend && npm run dev",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll=false",
+    "eslint": "eslint .",
+    "start-prod": "cd backend && npm start & cd .. && serve -s build -l 5000",
+    "test:e2e": "playwright test"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": ["e2e-tests"]
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "eslint": "^8.0.0"
+  }
+}

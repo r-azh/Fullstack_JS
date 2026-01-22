@@ -54,3 +54,4 @@ Excercises To Do:
 - Part8 8.1 to 8.26
 - Part9 9.1 to 9.30
 - Part10 10.1 to 10.27
+- Part11 11.1 to 11.21
